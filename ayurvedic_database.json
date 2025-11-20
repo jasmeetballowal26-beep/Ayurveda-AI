@@ -1,0 +1,272 @@
+{
+  "classical_texts": {
+    "Charaka_Samhita": {
+      "description": "Fundamental text on Ayurvedic medicine and internal medicine",
+      "chapters": [
+        "Sutrasthana",
+        "Nidanasthana",
+        "Vimanasthana",
+        "Sharirasthana",
+        "Indriyasthana",
+        "Chikitsasthana",
+        "Kalpasthana",
+        "Siddhisthana"
+      ],
+      "focus": "Internal medicine, diagnosis, treatment principles"
+    },
+    "Sushruta_Samhita": {
+      "description": "Ancient treatise on surgery and medicine",
+      "chapters": [
+        "Sutrasthana",
+        "Nidanasthana",
+        "Sharirasthana",
+        "Chikitsasthana",
+        "Kalpasthana",
+        "Uttartantra"
+      ],
+      "focus": "Surgery, anatomy, medicine preparation"
+    },
+    "Ashtanga_Hridayam": {
+      "description": "Concise compilation of Ayurvedic medicine",
+      "chapters": [
+        "Sutrasthana",
+        "Sharirasthana",
+        "Nidanasthana",
+        "Chikitsasthana",
+        "Kalpasthana",
+        "Uttarasthana"
+      ],
+      "focus": "Complete medical system, practical applications"
+    }
+  },
+  "drugs_database": [
+    {
+      "drug_name": "Triphala",
+      "sanskrit_name": "त्रिफला",
+      "composition": [
+        "Amalaki (Emblica officinalis)",
+        "Bibhitaki (Terminalia bellirica)",
+        "Haritaki (Terminalia chebula)"
+      ],
+      "properties": [
+        "Rasayana",
+        "Digestive",
+        "Detoxifying",
+        "Anti-inflammatory"
+      ],
+      "indications": [
+        "Constipation",
+        "Digestive disorders",
+        "Eye diseases",
+        "Skin disorders",
+        "General debility"
+      ],
+      "dosage": "3-6g twice daily",
+      "classical_reference": "Charaka Samhita - Chikitsasthana",
+      "pharmacological_action": [
+        "Antioxidant",
+        "Hepatoprotective",
+        "Immunomodulatory",
+        "Anti-diabetic"
+      ],
+      "category": "Rasayana"
+    },
+    {
+      "drug_name": "Ashwagandha",
+      "sanskrit_name": "अश्वगन्धा",
+      "composition": [
+        "Withania somnifera root powder"
+      ],
+      "properties": [
+        "Rasayana",
+        "Balya",
+        "Vajikara",
+        "Nidrajanana"
+      ],
+      "indications": [
+        "Stress",
+        "Anxiety",
+        "Insomnia",
+        "General weakness",
+        "Sexual disorders",
+        "Arthritis"
+      ],
+      "dosage": "1-3g twice daily with milk",
+      "classical_reference": "Charaka Samhita - Chikitsasthana",
+      "pharmacological_action": [
+        "Adaptogenic",
+        "Anti-stress",
+        "Neuroprotective",
+        "Anti-inflammatory"
+      ],
+      "category": "Rasayana"
+    },
+    {
+      "drug_name": "Brahmi Ghrita",
+      "sanskrit_name": "ब्राह्मी घृत",
+      "composition": [
+        "Brahmi (Bacopa monnieri)",
+        "Go-ghrita (Cow ghee)",
+        "Various herbs"
+      ],
+      "properties": [
+        "Medhya",
+        "Rasayana",
+        "Neuroprotective"
+      ],
+      "indications": [
+        "Memory disorders",
+        "Cognitive decline",
+        "Mental fatigue",
+        "Epilepsy",
+        "Anxiety"
+      ],
+      "dosage": "5-10ml twice daily",
+      "classical_reference": "Charaka Samhita - Chikitsasthana",
+      "pharmacological_action": [
+        "Nootropic",
+        "Neuroprotective",
+        "Anxiolytic",
+        "Memory enhancer"
+      ],
+      "category": "Medhya Rasayana"
+    },
+    {
+      "drug_name": "Dashamoolarishta",
+      "sanskrit_name": "दशमूलारिष्ट",
+      "composition": [
+        "Dashamoola (10 roots)",
+        "Jaggery",
+        "Water",
+        "Natural fermentation"
+      ],
+      "properties": [
+        "Vatahara",
+        "Balya",
+        "Deepana",
+        "Pachana"
+      ],
+      "indications": [
+        "Post-partum care",
+        "Weakness",
+        "Digestive disorders",
+        "Respiratory problems"
+      ],
+      "dosage": "15-30ml twice daily after meals",
+      "classical_reference": "Ashtanga Hridayam - Chikitsasthana",
+      "pharmacological_action": [
+        "Immunomodulatory",
+        "Anti-inflammatory",
+        "Digestive",
+        "Rejuvenative"
+      ],
+      "category": "Arishta"
+    },
+    {
+      "drug_name": "Saraswatarishta",
+      "sanskrit_name": "सरस्वतारिष्ट",
+      "composition": [
+        "Brahmi",
+        "Shankhpushpi",
+        "Jaggery",
+        "Various brain tonics"
+      ],
+      "properties": [
+        "Medhya",
+        "Smriti vardhaka",
+        "Buddhi vardhaka"
+      ],
+      "indications": [
+        "Memory loss",
+        "Learning difficulties",
+        "Mental retardation",
+        "Speech disorders"
+      ],
+      "dosage": "15-25ml twice daily",
+      "classical_reference": "Bhaishajya Ratnavali",
+      "pharmacological_action": [
+        "Cognitive enhancer",
+        "Neuroprotective",
+        "Memory booster"
+      ],
+      "category": "Medhya Rasayana"
+    }
+  ],
+  "disease_mapping": [
+    {
+      "disease": "Amlapitta (Hyperacidity)",
+      "symptoms": [
+        "Heartburn",
+        "Acid reflux",
+        "Nausea",
+        "Loss of appetite",
+        "Abdominal pain"
+      ],
+      "recommended_drugs": [
+        "Avipattikar Churna",
+        "Kamadudha Rasa",
+        "Shankh Bhasma"
+      ],
+      "diet_recommendations": [
+        "Avoid spicy food",
+        "Take cooling foods",
+        "Regular meal times"
+      ],
+      "lifestyle_changes": [
+        "Stress management",
+        "Regular exercise",
+        "Adequate sleep"
+      ]
+    },
+    {
+      "disease": "Sandhivata (Arthritis)",
+      "symptoms": [
+        "Joint pain",
+        "Stiffness",
+        "Swelling",
+        "Reduced mobility",
+        "Morning stiffness"
+      ],
+      "recommended_drugs": [
+        "Dashmoolarishta",
+        "Maharasnadi Kwath",
+        "Yogaraja Guggulu"
+      ],
+      "diet_recommendations": [
+        "Anti-inflammatory foods",
+        "Warm food",
+        "Avoid cold items"
+      ],
+      "lifestyle_changes": [
+        "Gentle exercise",
+        "Oil massage",
+        "Avoid excessive physical strain"
+      ]
+    },
+    {
+      "disease": "Madhumeha (Diabetes)",
+      "symptoms": [
+        "Excessive urination",
+        "Increased thirst",
+        "Fatigue",
+        "Slow healing",
+        "Blurred vision"
+      ],
+      "recommended_drugs": [
+        "Chandraprabha Vati",
+        "Diabecon",
+        "Karela Capsules"
+      ],
+      "diet_recommendations": [
+        "Low glycemic foods",
+        "Bitter vegetables",
+        "Regular meal timing"
+      ],
+      "lifestyle_changes": [
+        "Regular exercise",
+        "Weight management",
+        "Stress reduction"
+      ]
+    }
+  ]
+}

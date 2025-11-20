@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyurVeda AI - Intelligent Ayurvedic Medicine Recommendations</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="description" content="AI-powered Ayurvedic medicine recommendations based on classical texts and modern technology">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>AyurVeda AI</span>
+                </div>
+                <nav class="main-nav" role="navigation">
+                    <a href="#home" class="nav-link active" aria-current="page">Home</a>
+                    <a href="#symptom-checker" class="nav-link">AI Diagnosis</a>
+                    <a href="#medicines" class="nav-link">Medicine Database</a>
+                    <a href="#experts" class="nav-link">Expert Consultation</a>
+                    <a href="#texts" class="nav-link">Classical Texts</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="search-toggle btn--outline" aria-label="Open search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <button class="user-account btn--primary">
+                        <i class="fas fa-user"></i>
+                        Dashboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Search Modal -->
+    <div class="search-modal hidden" role="dialog" aria-modal="true" aria-labelledby="search-title">
+        <div class="search-modal-content">
+            <div class="search-header">
+                <h2 id="search-title" class="sr-only">Search AyurVeda AI</h2>
+                <input type="text" id="global-search" placeholder="Search medicines, symptoms, classical texts..." class="search-input" aria-label="Search">
+                <button class="search-close" aria-label="Close search">&times;</button>
+            </div>
+            <div class="search-results" id="search-results">
+                <div class="search-suggestions">
+                    <h4>Popular Searches</h4>
+                    <button class="search-tag" onclick="performQuickSearch('Triphala')">Triphala</button>
+                    <button class="search-tag" onclick="performQuickSearch('Headache')">Headache</button>
+                    <button class="search-tag" onclick="performQuickSearch('Digestion')">Digestion</button>
+                    <button class="search-tag" onclick="performQuickSearch('Stress')">Stress</button>
+                    <button class="search-tag" onclick="performQuickSearch('Ashwagandha')">Ashwagandha</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-background">
+                <div class="floating-elements">
+                    <div class="floating-leaf leaf-1"></div>
+                    <div class="floating-leaf leaf-2"></div>
+                    <div class="floating-leaf leaf-3"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Intelligent Ayurvedic Medicine Recommendations</h1>
+                    <p>Harness the power of AI to discover personalized Ayurvedic treatments based on 5000 years of ancient wisdom and cutting-edge technology.</p>
+                    <div class="hero-actions">
+                        <button class="btn--primary btn--lg" onclick="showSymptomChecker()">
+                            <i class="fas fa-stethoscope"></i>
+                            AI Symptom Analysis
+                        </button>
+                        <button class="btn--outline btn--lg" onclick="showMedicines()">
+                            <i class="fas fa-pills"></i>
+                            Explore Medicines
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="10000">0</span>
+                            <span class="stat-label">Ayurvedic Formulations</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="500">0</span>
+                            <span class="stat-label">Qualified Experts</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="50000">0</span>
+                            <span class="stat-label">Patients Helped</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Comprehensive Ayurvedic Intelligence Platform</h2>
+                    <p>Experience the perfect blend of ancient wisdom and modern AI technology</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card" onclick="showSymptomChecker()">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI-Powered Diagnosis</h3>
+                        <p>Advanced symptom analysis using machine learning algorithms trained on classical Ayurvedic texts and modern medical knowledge.</p>
+                        <div class="feature-highlight">95% Accuracy Rate</div>
+                    </div>
+                    <div class="feature-card" onclick="showMedicines()">
+                        <div class="feature-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Comprehensive Database</h3>
+                        <p>Extensive collection of 10,000+ Ayurvedic medicines with detailed profiles, interactions, and classical references.</p>
+                        <div class="feature-highlight">Updated Daily</div>
+                    </div>
+                    <div class="feature-card" onclick="showExperts()">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h3>Expert Consultations</h3>
+                        <p>Connect with board-certified Ayurvedic practitioners for personalized treatment plans and follow-ups.</p>
+                        <div class="feature-highlight">24/7 Available</div>
+                    </div>
+                    <div class="feature-card" onclick="showTexts()">
+                        <div class="feature-icon">
+                            <i class="fas fa-scroll"></i>
+                        </div>
+                        <h3>Digital Scripture Library</h3>
+                        <p>Searchable database of classical texts including Charaka Samhita, Sushruta Samhita, and Ashtanga Hridayam.</p>
+                        <div class="feature-highlight">Sanskrit + English</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Indicators -->
+        <section class="trust-section">
+            <div class="container">
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>AYUSH Ministry Approved</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>ISO 27001 Certified</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-award"></i>
+                        <span>Healthcare Innovation Award 2024</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-users"></i>
+                        <span>50,000+ Satisfied Patients</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Symptom Checker Section -->
+        <section id="symptom-checker" class="section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h2>AI-Powered Symptom Checker & Medicine Recommendations</h2>
+                    <p>Advanced diagnostic tool powered by machine learning and classical Ayurvedic knowledge</p>
+                </div>
+                
+                <div class="symptom-wizard">
+                    <div class="wizard-progress">
+                        <div class="progress-step active" data-step="1">
+                            <span class="step-number">1</span>
+                            <span class="step-label">Body System</span>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <span class="step-number">2</span>
+                            <span class="step-label">Symptoms</span>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <span class="step-number">3</span>
+                            <span class="step-label">Details</span>
+                        </div>
+                        <div class="progress-step" data-step="4">
+                            <span class="step-number">4</span>
+                            <span class="step-label">AI Analysis</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Body System Selection -->
+                    <div class="wizard-step active" data-step="1">
+                        <h3>Select the affected body system</h3>
+                        <div class="body-systems-grid">
+                            <div class="body-system-card" data-system="Digestive">
+                                <div class="system-icon"><i class="fas fa-stomach"></i></div>
+                                <h4>Digestive System</h4>
+                                <p>Stomach, intestines, liver, digestion-related issues</p>
+                                <div class="system-keywords">Agni, Ama, Pitta</div>
+                            </div>
+                            <div class="body-system-card" data-system="Respiratory">
+                                <div class="system-icon"><i class="fas fa-lungs"></i></div>
+                                <h4>Respiratory System</h4>
+                                <p>Lungs, breathing, chest, throat problems</p>
+                                <div class="system-keywords">Prana Vata, Kapha</div>
+                            </div>
+                            <div class="body-system-card" data-system="Nervous">
+                                <div class="system-icon"><i class="fas fa-brain"></i></div>
+                                <h4>Nervous System</h4>
+                                <p>Brain, nerves, mental health, cognitive issues</p>
+                                <div class="system-keywords">Vata, Medhya Rasayana</div>
+                            </div>
+                            <div class="body-system-card" data-system="Musculoskeletal">
+                                <div class="system-icon"><i class="fas fa-bone"></i></div>
+                                <h4>Musculoskeletal</h4>
+                                <p>Bones, joints, muscles, movement disorders</p>
+                                <div class="system-keywords">Vata Vyadhi, Majja</div>
+                            </div>
+                            <div class="body-system-card" data-system="Skin">
+                                <div class="system-icon"><i class="fas fa-hand-paper"></i></div>
+                                <h4>Integumentary</h4>
+                                <p>Skin conditions, hair, nail problems</p>
+                                <div class="system-keywords">Rakta, Pitta</div>
+                            </div>
+                            <div class="body-system-card" data-system="Urogenital">
+                                <div class="system-icon"><i class="fas fa-procedures"></i></div>
+                                <h4>Urogenital System</h4>
+                                <p>Kidney, bladder, reproductive health</p>
+                                <div class="system-keywords">Apana Vata, Mutra</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Symptom Selection -->
+                    <div class="wizard-step" data-step="2">
+                        <h3>Describe your specific symptoms</h3>
+                        <div class="symptoms-container">
+                            <div class="symptom-search">
+                                <input type="text" id="symptom-search" placeholder="Search or type your symptoms..." class="form-control">
+                                <div class="search-suggestions" id="symptom-suggestions"></div>
+                            </div>
+                            <div class="symptoms-grid" id="symptoms-grid"></div>
+                        </div>
+                        <div class="selected-symptoms">
+                            <h4>Selected Symptoms (<span id="symptom-count">0</span>)</h4>
+                            <div id="selected-symptoms-list"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Additional Details -->
+                    <div class="wizard-step" data-step="3">
+                        <h3>Provide additional health information</h3>
+                        <div class="details-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Duration of symptoms</label>
+                                    <select class="form-control" id="symptom-duration" required>
+                                        <option value="">Select duration</option>
+                                        <option value="1-2 days">1-2 days (Acute)</option>
+                                        <option value="3-7 days">3-7 days</option>
+                                        <option value="1-2 weeks">1-2 weeks</option>
+                                        <option value="2-4 weeks">2-4 weeks</option>
+                                        <option value="1-3 months">1-3 months (Chronic)</option>
+                                        <option value="more than 3 months">More than 3 months</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Age Group</label>
+                                    <select class="form-control" id="age-group">
+                                        <option value="">Select age group</option>
+                                        <option value="child">Child (2-12 years)</option>
+                                        <option value="teen">Teenager (13-19 years)</option>
+                                        <option value="adult">Adult (20-60 years)</option>
+                                        <option value="senior">Senior (60+ years)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Severity Level: <span id="severity-value">5</span>/10</label>
+                                <input type="range" min="1" max="10" value="5" class="severity-slider" id="severity-slider">
+                                <div class="severity-labels">
+                                    <span>Mild (1-3)</span>
+                                    <span>Moderate (4-7)</span>
+                                    <span>Severe (8-10)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Additional Information</label>
+                                <textarea class="form-control" id="additional-info" placeholder="Describe triggers, patterns, previous treatments, or any other relevant information..." rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: AI Analysis Results -->
+                    <div class="wizard-step" data-step="4">
+                        <div class="ai-analysis-loading" id="analysis-loading">
+                            <div class="loading-animation">
+                                <div class="loading-spinner"></div>
+                                <h3>AI Analysis in Progress</h3>
+                                <p>Analyzing your symptoms against thousands of classical Ayurvedic texts...</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="diagnosis-results hidden" id="diagnosis-results">
+                            <div class="ai-analysis">
+                                <div class="analysis-header">
+                                    <i class="fas fa-brain"></i>
+                                    <h3>AI Analysis Complete</h3>
+                                    <div class="analysis-confidence">
+                                        <span class="confidence-label">Confidence Score:</span>
+                                        <span class="confidence-score" id="confidence-score">85%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="results-tabs">
+                                <button class="tab-btn active" onclick="showResultTab('conditions')">Possible Conditions</button>
+                                <button class="tab-btn" onclick="showResultTab('medicines')">Recommended Medicines</button>
+                                <button class="tab-btn" onclick="showResultTab('lifestyle')">Lifestyle Recommendations</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="conditions-tab">
+                                <div class="possible-conditions" id="possible-conditions"></div>
+                            </div>
+                            
+                            <div class="tab-content" id="medicines-tab">
+                                <div class="recommended-medicines" id="recommended-medicines"></div>
+                            </div>
+                            
+                            <div class="tab-content" id="lifestyle-tab">
+                                <div class="lifestyle-recommendations" id="lifestyle-recommendations"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="wizard-navigation">
+                        <button class="btn--outline" id="prev-btn" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="btn--primary" id="next-btn" onclick="nextStep()">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="btn--primary hidden" id="restart-btn" onclick="restartWizard()">
+                            <i class="fas fa-redo"></i> New Analysis
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medicine Database Section -->
+        <section id="medicines" class="section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Comprehensive Ayurvedic Medicine Database</h2>
+                    <p>Explore our extensive collection of authentic Ayurvedic medicines with AI-powered recommendations</p>
+                </div>
+
+                <div class="medicine-filters-advanced">
+                    <div class="filter-header">
+                        <h3>Advanced Filters</h3>
+                        <button class="clear-filters btn--outline btn--sm" onclick="clearAllFilters()">
+                            <i class="fas fa-times"></i> Clear All
+                        </button>
+                    </div>
+                    <div class="filter-grid">
+                        <div class="search-filter">
+                            <input type="text" id="medicine-search" placeholder="Search medicines, ingredients, conditions..." class="form-control">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <div class="filter-controls">
+                            <select class="form-control" id="category-filter">
+                                <option value="">All Categories</option>
+                                <option value="Rasayana">Rasayana (Rejuvenatives)</option>
+                                <option value="Medhya">Medhya Rasayana (Brain Tonics)</option>
+                                <option value="Arishta">Arishta (Fermented)</option>
+                                <option value="Churna">Churna (Powder)</option>
+                                <option value="Ghrita">Ghrita (Medicated Ghee)</option>
+                            </select>
+                            <select class="form-control" id="brand-filter">
+                                <option value="">All Brands</option>
+                                <option value="Himalaya">Himalaya</option>
+                                <option value="Kottakkal">Kottakkal</option>
+                                <option value="Vaidyaratnam">Vaidyaratnam</option>
+                                <option value="Baidyanath">Baidyanath</option>
+                            </select>
+                            <select class="form-control" id="sort-filter">
+                                <option value="rating">Sort by Rating</option>
+                                <option value="price">Sort by Price</option>
+                                <option value="name">Sort by Name</option>
+                                <option value="effectiveness">Sort by Effectiveness</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="medicines-grid" id="medicines-grid"></div>
+                
+                <div class="pagination" id="medicine-pagination"></div>
+            </div>
+        </section>
+
+        <!-- Medicine Detail Modal -->
+        <div class="medicine-modal hidden" id="medicine-modal" role="dialog" aria-modal="true" aria-labelledby="medicine-modal-title">
+            <div class="medicine-modal-content">
+                <div class="modal-header">
+                    <h2 id="medicine-modal-title"></h2>
+                    <button class="modal-close" aria-label="Close medicine details">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="medicine-details-grid">
+                        <div class="medicine-info">
+                            <div class="info-section">
+                                <h3>Medicine Overview</h3>
+                                <div class="medicine-overview">
+                                    <div class="overview-item">
+                                        <span class="label">Sanskrit Name:</span>
+                                        <span id="medicine-sanskrit" class="sanskrit-text"></span>
+                                    </div>
+                                    <div class="overview-item">
+                                        <span class="label">Category:</span>
+                                        <span id="medicine-category"></span>
+                                    </div>
+                                    <div class="overview-item">
+                                        <span class="label">Properties:</span>
+                                        <div id="medicine-properties"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>Composition</h3>
+                                <div id="medicine-composition"></div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>Therapeutic Indications</h3>
+                                <div id="medicine-indications"></div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>Dosage & Administration</h3>
+                                <div id="medicine-dosage"></div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>Pharmacological Actions</h3>
+                                <div id="medicine-pharmacology"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="medicine-meta">
+                            <div class="rating-section">
+                                <div class="rating-summary">
+                                    <div class="rating-score" id="medicine-rating">4.5</div>
+                                    <div class="rating-stars" id="medicine-stars"></div>
+                                    <div class="rating-count" id="medicine-reviews">234 reviews</div>
+                                </div>
+                            </div>
+                            
+                            <div class="classical-reference">
+                                <h4><i class="fas fa-scroll"></i> Classical Reference</h4>
+                                <p id="medicine-classical-ref"></p>
+                            </div>
+                            
+                            <div class="contraindications">
+                                <h4><i class="fas fa-exclamation-triangle"></i> Important Notes</h4>
+                                <div id="medicine-contraindications"></div>
+                            </div>
+                            
+                            <div class="modal-actions">
+                                <button class="btn--primary btn--full-width" onclick="addToFavorites()">
+                                    <i class="fas fa-heart"></i> Add to Favorites
+                                </button>
+                                <button class="btn--outline btn--full-width" onclick="shareM edicine()">
+                                    <i class="fas fa-share"></i> Share Medicine
+                                </button>
+                                <button class="btn--outline btn--full-width" onclick="consultExpert()">
+                                    <i class="fas fa-user-md"></i> Consult Expert
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expert Consultation Section -->
+        <section id="experts" class="section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Consult Qualified Ayurvedic Experts</h2>
+                    <p>Get personalized treatment plans from board-certified practitioners</p>
+                </div>
+
+                <div class="expert-filters">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" onclick="filterExperts('all')">All Experts</button>
+                        <button class="filter-tab" onclick="filterExperts('panchakarma')">Panchakarma</button>
+                        <button class="filter-tab" onclick="filterExperts('womens-health')">Women's Health</button>
+                        <button class="filter-tab" onclick="filterExperts('chronic-diseases')">Chronic Diseases</button>
+                        <button class="filter-tab" onclick="filterExperts('mental-health')">Mental Health</button>
+                    </div>
+                </div>
+
+                <div class="experts-grid" id="experts-grid"></div>
+            </div>
+        </section>
+
+        <!-- Booking Modal -->
+        <div class="booking-modal hidden" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
+            <div class="booking-modal-content">
+                <div class="modal-header">
+                    <h2 id="booking-modal-title">Book Expert Consultation</h2>
+                    <button class="modal-close" aria-label="Close booking form">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="booking-steps">
+                        <div class="booking-step active" data-step="1">
+                            <h3>Consultation Details</h3>
+                            <div class="expert-summary" id="expert-summary"></div>
+                            <div class="booking-form">
+                                <div class="form-group">
+                                    <label class="form-label">Consultation Type</label>
+                                    <div class="consultation-types">
+                                        <label class="radio-option">
+                                            <input type="radio" name="consultation-type" value="video" checked>
+                                            <span class="radio-label">
+                                                <i class="fas fa-video"></i>
+                                                Video Call (₹500)
+                                            </span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="consultation-type" value="audio">
+                                            <span class="radio-label">
+                                                <i class="fas fa-phone"></i>
+                                                Audio Call (₹400)
+                                            </span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="consultation-type" value="chat">
+                                            <span class="radio-label">
+                                                <i class="fas fa-comments"></i>
+                                                Chat Session (₹300)
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="booking-step" data-step="2">
+                            <h3>Schedule Appointment</h3>
+                            <div class="date-time-picker">
+                                <div class="form-group">
+                                    <label class="form-label">Select Date</label>
+                                    <input type="date" class="form-control" id="consultation-date">
+                                </div>
+                                <div class="available-slots" id="available-slots">
+                                    <h4>Available Time Slots</h4>
+                                    <div class="time-slots" id="time-slots"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="booking-step" data-step="3">
+                            <h3>Health Information</h3>
+                            <div class="health-form">
+                                <div class="form-group">
+                                    <label class="form-label">Chief Complaint</label>
+                                    <textarea class="form-control" id="chief-complaint" placeholder="Briefly describe your main health concern..." rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Current Medications</label>
+                                    <textarea class="form-control" id="current-medications" placeholder="List any medicines you're currently taking..." rows="2"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Previous Ayurvedic Treatment</label>
+                                    <select class="form-control" id="previous-treatment">
+                                        <option value="">Select option</option>
+                                        <option value="yes">Yes, I have experience with Ayurveda</option>
+                                        <option value="no">No, this is my first consultation</option>
+                                        <option value="some">I have limited experience</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-summary">
+                        <div class="summary-item">
+                            <span>Consultation Fee:</span>
+                            <span class="fee-amount" id="consultation-fee">₹500</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Platform Fee:</span>
+                            <span>₹50</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total Amount:</span>
+                            <span class="total-amount" id="total-amount">₹550</span>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-navigation">
+                        <button class="btn--outline" id="booking-prev" onclick="previousBookingStep()">Previous</button>
+                        <button class="btn--primary" id="booking-next" onclick="nextBookingStep()">Next</button>
+                        <button class="btn--primary hidden" id="confirm-booking" onclick="confirmBooking()">Confirm Booking</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Classical Texts Section -->
+        <section id="texts" class="section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Digital Library of Classical Ayurvedic Texts</h2>
+                    <p>Explore ancient wisdom through searchable Sanskrit texts with English translations</p>
+                </div>
+
+                <div class="text-search-advanced">
+                    <div class="search-input-container">
+                        <input type="text" id="text-search" placeholder="Search verses, topics, Sanskrit terms..." class="form-control">
+                        <div class="search-filters">
+                            <select class="form-control" id="text-filter">
+                                <option value="">All Texts</option>
+                                <option value="Charaka">Charaka Samhita</option>
+                                <option value="Sushruta">Sushruta Samhita</option>
+                                <option value="Ashtanga">Ashtanga Hridayam</option>
+                            </select>
+                            <select class="form-control" id="chapter-filter">
+                                <option value="">All Chapters</option>
+                                <option value="Sutrasthana">Sutra Sthana</option>
+                                <option value="Chikitsasthana">Chikitsa Sthana</option>
+                                <option value="Nidanasthana">Nidana Sthana</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="texts-grid" id="texts-grid"></div>
+            </div>
+        </section>
+
+        <!-- Success Stories Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Success Stories from Our Community</h2>
+                    <p>Real experiences from patients who found healing through our AI-guided Ayurvedic treatments</p>
+                </div>
+                <div class="testimonials-carousel">
+                    <div class="testimonials-track" id="testimonials-track"></div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn prev" onclick="prevTestimonial()">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-btn next" onclick="nextTestimonial()">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Assistant Chatbot -->
+        <div class="chatbot" id="chatbot">
+            <div class="chatbot-header" onclick="toggleChatbot()">
+                <div class="chatbot-info">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <span class="chatbot-title">AyurVeda Assistant</span>
+                        <span class="chatbot-status">Online</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-up" id="chatbot-toggle"></i>
+            </div>
+            <div class="chatbot-body" id="chatbot-body">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="chat-message bot-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                Namaste! I'm your AI-powered Ayurvedic assistant. I can help you with:
+                                <br>• Medicine recommendations
+                                <br>• Symptom analysis  
+                                <br>• Classical text references
+                                <br>• Expert consultations
+                                <br><br>How can I assist you today?
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-quick-actions">
+                    <button class="quick-action" onclick="sendQuickMessage('What medicine is good for headache?')">
+                        Headache remedy
+                    </button>
+                    <button class="quick-action" onclick="sendQuickMessage('I have digestive issues')">
+                        Digestive problems
+                    </button>
+                    <button class="quick-action" onclick="sendQuickMessage('Book expert consultation')">
+                        Book consultation
+                    </button>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" id="chat-input" placeholder="Ask me anything about Ayurveda..." class="chat-input">
+                    <button onclick="sendChatMessage()" class="chat-send-btn" aria-label="Send message">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>AyurVeda AI</span>
+                    </div>
+                    <p>Bridging 5000 years of Ayurvedic wisdom with cutting-edge artificial intelligence for personalized healthcare solutions.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Platform</h3>
+                    <ul>
+                        <li><a href="#symptom-checker">AI Symptom Checker</a></li>
+                        <li><a href="#medicines">Medicine Database</a></li>
+                        <li><a href="#experts">Expert Consultation</a></li>
+                        <li><a href="#texts">Classical Texts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Research Papers</a></li>
+                        <li><a href="#">Clinical Studies</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Mobile App</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> support@ayurvedaai.com</p>
+                        <p><i class="fas fa-phone"></i> +91-1800-AYURVEDA</p>
+                        <p><i class="fas fa-map-marker-alt"></i> AIIMS, New Delhi, India</p>
+                        <p><i class="fas fa-clock"></i> 24/7 Available</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <p>&copy; 2024 AyurVeda AI. All rights reserved.</p>
+                    <div class="certifications">
+                        <span>AYUSH Ministry Certified</span> • 
+                        <span>ISO 27001 Compliant</span> • 
+                        <span>HIPAA Secure</span>
+                    </div>
+                </div>
+                <div class="footer-badges">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40'%3E%3Crect fill='%23168f5a' width='80' height='40' rx='5'/%3E%3Ctext x='40' y='25' fill='white' text-anchor='middle' font-size='10' font-family='Arial'%3EAYUSH%3C/text%3E%3C/svg%3E" alt="AYUSH Certified">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40'%3E%3Crect fill='%23007acc' width='80' height='40' rx='5'/%3E%3Ctext x='40' y='25' fill='white' text-anchor='middle' font-size='10' font-family='Arial'%3EISO 27001%3C/text%3E%3C/svg%3E" alt="ISO 27001">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
